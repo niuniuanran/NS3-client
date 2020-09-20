@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import "./App.css";
 import Routes from "./Routes";
+import Nav from "react-bootstrap/lib/Nav";
+import NavItem from "react-bootstrap/lib/NavItem";
 
 function App() {
   return (
@@ -14,6 +16,12 @@ function App() {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
+            <Navbar.Collapse>
+                <Nav pullRight>
+                    <NavItem href="/signup">Signup</NavItem>
+                    <NavItem href="/login">Login</NavItem>
+                </Nav>
+            </Navbar.Collapse>
         </Navbar>
           <Routes />
       </div>
