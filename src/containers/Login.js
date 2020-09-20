@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useAppContext } from "../libs/contextLib";
 import "./Login.css";
 import LoaderButton from "../components/LoadButton";
+import { onError } from "../libs/errorLib";
 
 export default function Login() {
     const history = useHistory();
@@ -26,7 +27,7 @@ export default function Login() {
             userHasAuthenticated(true);
             history.push("/");
         } catch (e) {
-            alert(e.message);
+            onError(e.message);
             setIsLoading(false);
         }
     }
