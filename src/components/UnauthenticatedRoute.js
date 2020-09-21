@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Redirect, useLocation} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import {useAppContext} from "../libs/contextLib";
 
 function querystring(name, url = window.location.href) {
@@ -18,16 +18,17 @@ function querystring(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export default function AuthenticatedRoute({children, ...rest}) {
-
-    // useAppContext is the consumer of the AppContext. It returns the values in the context provider.
-    const {isAuthenticated} = useAppContext();
-
+// Login and Signup are wrapped in UnauthenticatedRoute. Once the user has finished authentication, UnauthenticatedRoute will detect that by the isAuthenticated value from useAppContext(), and redirect the user back to their attempted place.
+export default function UnauthenticatedRoute({ children, ...rest }) {
+    const { isAuthenticated } = useAppContext();
+    const redirect = querystring("redirect");
     return (
         <Route {...rest}>
-            {!isAuthenticated? children : <Redirect to="/"/>}
+            {!isAuthenticated ? (
+                children
+            ) : (
+                <Redirect to={redirect === "" || redirect === null ? "/" : redirect} />
+            )}
         </Route>
-    )
-
-
+    );
 }
