@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { API } from "aws-amplify";
-import { onError } from "../libs/errorLib";
+import React, {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
+import {API} from "aws-amplify";
+import {onError} from "../libs/errorLib";
 import config from "../config";
 
 export default function Settings() {
+    const [stripe, setStripe] = useState(null);
+    useEffect(() => {
+
+        // access Stripe that is loaded as a global variable at public/index.html
+        setStripe(window.Stripe(config.STRIPE_KEY));
+
+    }, []);
+
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
 
