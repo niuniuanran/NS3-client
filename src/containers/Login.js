@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
+import {useFormFields} from "../libs/hooksLib";
 import { useAppContext } from "../libs/contextLib";
 import "./Login.css";
 import LoaderButton from "../components/LoadButton";
@@ -11,11 +12,10 @@ export default function Login() {
     const history = useHistory();
     const { userHasAuthenticated } = useAppContext();
     const [isLoading, setIsLoading] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [formFields, setFormFields] = useFormFields({email: "", password: ""});
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return formFields.email.length > 0 && formFields.password.length > 0;
     }
 
     async function handleSubmit(event) {
@@ -23,7 +23,7 @@ export default function Login() {
         setIsLoading(true);
 
         try {
-            await Auth.signIn(email, password);
+            await Auth.signIn(formFields.email, formFields.password);
             userHasAuthenticated(true);
             history.push("/");
         } catch (e) {
@@ -40,15 +40,15 @@ export default function Login() {
                     <FormControl
                         autoFocus
                         type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        value={formFields.email}
+                        onChange={e => setFormFields({email: e.target.value})}
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        value={formFields.password}
+                        onChange={e => setFormFields({password: e.target.value})}
                         type="password"
                     />
                 </FormGroup>
