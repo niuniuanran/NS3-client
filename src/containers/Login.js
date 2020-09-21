@@ -12,10 +12,10 @@ export default function Login() {
     const history = useHistory();
     const { userHasAuthenticated } = useAppContext();
     const [isLoading, setIsLoading] = useState(false);
-    const [formFields, setFormFields] = useFormFields({email: "", password: ""});
+    const [fields, handleFieldChange] = useFormFields({email: "", password: ""});
 
     function validateForm() {
-        return formFields.email.length > 0 && formFields.password.length > 0;
+        return fields.email.length > 0 && fields.password.length > 0;
     }
 
     async function handleSubmit(event) {
@@ -23,7 +23,7 @@ export default function Login() {
         setIsLoading(true);
 
         try {
-            await Auth.signIn(formFields.email, formFields.password);
+            await Auth.signIn(fields.email, fields.password);
             userHasAuthenticated(true);
             history.push("/");
         } catch (e) {
@@ -40,15 +40,15 @@ export default function Login() {
                     <FormControl
                         autoFocus
                         type="email"
-                        value={formFields.email}
-                        onChange={e => setFormFields({email: e.target.value})}
+                        value={fields.email}
+                        onChange={handleFieldChange}
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bsSize="large">
                     <ControlLabel>Password</ControlLabel>
                     <FormControl
-                        value={formFields.password}
-                        onChange={e => setFormFields({password: e.target.value})}
+                        value={fields.password}
+                        onChange={handleFieldChange}
                         type="password"
                     />
                 </FormGroup>
