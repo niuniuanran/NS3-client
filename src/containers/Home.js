@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {PageHeader, ListGroup, ListGroupItem} from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import {LinkContainer} from "react-router-bootstrap";
 import {useAppContext} from "../libs/contextLib";
 import {onError} from "../libs/errorLib";
 import {API} from "aws-amplify";
@@ -11,19 +11,24 @@ export default function Home() {
     const {isAuthenticated} = useAppContext();
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(async () => {
-        if (!isAuthenticated) {
-            return;
-        }
-        try {
-            const notes = await loadNotes();
-            setNotes(notes);
-            setIsLoading(false);
+    useEffect(
+        () => {
+            async function onLoad() {
+                if (!isAuthenticated) {
+                    return;
+                }
+                try {
+                    const notes = await loadNotes();
+                    setNotes(notes);
+                } catch (e) {
+                    onError(e);
+                }
+                setIsLoading(false);
+            }
 
-        } catch (e) {
-            onError(e);
-        }
-    }, [isAuthenticated]);
+            onLoad();
+
+        }, [isAuthenticated]);
 
     function loadNotes() {
         return API.get("notes", "/notes");
