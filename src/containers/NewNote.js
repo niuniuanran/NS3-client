@@ -6,6 +6,7 @@ import {API} from "aws-amplify";
 import { onError } from "../libs/errorLib";
 import config from "../config";
 import "./NewNote.css";
+import {s3Upload} from "../libs/awsLib";
 
 export default function NewNote() {
     const file = useRef(null);
@@ -35,7 +36,8 @@ export default function NewNote() {
         setIsLoading(true);
 
         try {
-            await createNote({ content });
+            const attachment = await s3Upload(file.current);
+            await createNote({ content, attachment });
             history.push("/");
         } catch (e) {
             onError(e);
