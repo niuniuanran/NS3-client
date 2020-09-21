@@ -7,6 +7,8 @@ import Signup from "./containers/Signup";
 import NewNote from "./containers/NewNote";
 import Notes from "./containers/Notes";
 import Settings from "./containers/Settings";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
 
 export default function Routes() {
     return (
@@ -14,25 +16,25 @@ export default function Routes() {
             <Route exact path="/">
                 <Home />
             </Route>
-            <Route exact path="/login">
+            <UnauthenticatedRoute exact path="/login">
                 <Login />
-            </Route>
+            </UnauthenticatedRoute>
 
-            <Route exact path="/signup">
+            <UnauthenticatedRoute exact path="/signup">
                 <Signup/>
-            </Route>
+            </UnauthenticatedRoute>
 
-            <Route exact path="/notes/new">
+            <AuthenticatedRoute exact path="/notes/new">
                 <NewNote />
-            </Route>
+            </AuthenticatedRoute>
 
-            <Route exact path="/notes/:id">
+            <AuthenticatedRoute exact path="/notes/:id">
                 <Notes />
-            </Route>
+            </AuthenticatedRoute>
 
-            <Route exact path="/settings">
+            <AuthenticatedRoute exact path="/settings">
                 <Settings />
-            </Route>
+            </AuthenticatedRoute>
 
             {/* Finally, catch all unmatched routes */}
             <Route>
