@@ -4,9 +4,9 @@ import {Navbar, Nav, NavItem} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import "./App.css";
 import Routes from "./Routes";
-import { AppContext } from "./libs/contextLib";
-import { Auth } from "aws-amplify";
-import { onError } from "./libs/errorLib";
+import {AppContext} from "./libs/contextLib";
+import {Auth} from "aws-amplify";
+import {onError} from "./libs/errorLib";
 
 function App() {
     const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -14,15 +14,14 @@ function App() {
     const history = useHistory();
 
     useEffect(() => {
-        loadAuthSession().then(()=>setIsAuthenticating(false));
+        loadAuthSession().then(() => setIsAuthenticating(false));
     }, []);
 
     async function loadAuthSession() {
         try {
             await Auth.currentSession();
             userHasAuthenticated(true);
-        }
-        catch(e) {
+        } catch (e) {
             if (e !== 'No current user') {
                 onError(e);
             }
@@ -37,19 +36,23 @@ function App() {
     }
 
     return (
-        ! isAuthenticating &&
+        !isAuthenticating &&
         <div className="App container">
-            <Navbar fluid collapseOnSelect>
+
+            <Navbar bg="dark" variant="dark" fluid collapseOnSelect >
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">NS3</Link>
+                        <Link to="/">
+                            <div className={"logo-container"}><img src={"./logo-transparent.png"} alt={""} className={"logo"} title={"NS3"}/>
+                            </div>
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>
                         {isAuthenticated
-                            ?<>
+                            ? <>
                                 <LinkContainer to="/settings">
                                     <NavItem>Settings</NavItem>
                                 </LinkContainer>
@@ -67,8 +70,8 @@ function App() {
                 </Navbar.Collapse>
             </Navbar>
 
-            <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-                <Routes />
+            <AppContext.Provider value={{isAuthenticated, userHasAuthenticated}}>
+                <Routes/>
             </AppContext.Provider>
         </div>
     );

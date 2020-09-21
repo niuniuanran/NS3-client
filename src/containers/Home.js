@@ -59,8 +59,8 @@ export default function Home() {
         return (
             <div className="Home">
                 <div className="lander">
-                    <h1>NS3</h1>
-                    <p>Note-taking app based on Scratch by Serverless Stack</p>
+                    <h1><img src="./logo-transparent.png"/></h1>
+                    <p><span className={"highlight-char"}>N</span>ote-taking app based on <span className={"highlight-char"}>S</span>cratch by <span className={"highlight-char"}>S</span>erverless <span className={"highlight-char"}>S</span>tack</p>
                     <p>Anran's first web application on AWS serverless infrastructure</p>
 
                 </div>

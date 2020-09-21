@@ -2,10 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #333;
+  font-size: 20px;
+  color: #eeffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #333333;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,3 +28,12 @@ input[type=file] {
   width: 100%;
 }
 
+.decor-nav-bg{
+  background-color: rgba(255,255,255,0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rem;
+
+}

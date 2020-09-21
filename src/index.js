@@ -35,6 +35,7 @@ Amplify.configure({
 
 ReactDOM.render(
         <Router>
+            <div className={"decor-nav-bg"}/>
             <App/>
         </Router>,
     document.getElementById('root')

@@ -5,3 +5,20 @@
 .App .navbar-brand {
   font-weight: bold;
 }
+
+.logo {
+  width: 8.5rem;
+}
+
+.logo-container{
+  position: relative;
+  bottom: 30px;
+  margin: 0;
+  height: 5rem;
+}
+
+.navbar-default{
+  background-color: transparent!important;
+  border: 0!important;
+  color:#222!important;
+}
