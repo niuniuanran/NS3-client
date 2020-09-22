@@ -7,6 +7,7 @@ import {s3Upload} from "../libs/awsLib";
 import {FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import config from "../config";
 import "./Notes.css";
+import LoadingPage from "../components/LoadingPage";
 
 export default function Notes() {
     const file = useRef(null);
@@ -14,17 +15,17 @@ export default function Notes() {
     const history = useHistory();
     const [note, setNote] = useState(null);
     const [content, setContent] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
-        function loadNote() {
-            return API.get("notes", `/notes/${id}`);
-        }
 
         async function onLoad() {
             try {
-                const note = await loadNote();
+                setIsLoading(true);
+                const note = await API.get("notes", `/notes/${id}`);
+                setIsLoading(false);
                 const {content, attachment} = note;
 
                 // get the URL of the attachment with a get request
@@ -77,7 +78,7 @@ export default function Notes() {
             return;
         }
 
-        setIsLoading(true);
+        setIsSubmitting(true);
 
         try {
             if (file.current) {
@@ -94,7 +95,7 @@ export default function Notes() {
             history.push("/");
         } catch (e) {
             onError(e);
-            setIsLoading(false);
+            setIsSubmitting(false);
         }
     }
 
@@ -131,7 +132,8 @@ export default function Notes() {
 
     return (
         <div className="Notes">
-            {note && (
+            {isLoading && <LoadingPage/> }
+            {note  && (
                 <form onSubmit={handleSubmit}>
                     <FormGroup controlId="content">
                         <FormControl
@@ -163,7 +165,7 @@ export default function Notes() {
                         type="submit"
                         bsSize="large"
                         bsStyle="primary"
-                        isLoading={isLoading}
+                        isLoading={isSubmitting}
                         disabled={!validateForm()}
                     >
                         Save
