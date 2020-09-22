@@ -103,7 +103,6 @@ export default function Notes() {
     }
 
     function deleteAttachment(attachment) {
-        alert(attachment);
         return Storage.vault.remove(attachment);
     }
 
