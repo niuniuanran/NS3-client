@@ -5,6 +5,7 @@ import {useAppContext} from "../libs/contextLib";
 import {onError} from "../libs/errorLib";
 import {API} from "aws-amplify";
 import "./Home.css";
+import LoadingPage from "../components/LoadingPage";
 
 export default function Home() {
     const [notes, setNotes] = useState([]);
@@ -73,7 +74,7 @@ export default function Home() {
             <div className="notes">
                 <PageHeader>Your Notes</PageHeader>
                 <ListGroup>
-                    {!isLoading && renderNotesList(notes)}
+                    {isLoading? <LoadingPage/> : renderNotesList(notes)}
                 </ListGroup>
             </div>
         );

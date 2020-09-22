@@ -1,0 +1,6 @@
+.loading-page{
+    position: fixed;
+    top: 40vh;
+    left: 50vw;
+    z-index: 1000;
+}
