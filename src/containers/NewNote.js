@@ -40,6 +40,7 @@ export default function NewNote() {
             await createNote({ content, attachment });
             history.push("/");
         } catch (e) {
+
             onError(e);
             setIsLoading(false);
         }

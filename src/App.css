@@ -22,3 +22,7 @@
   border: 0!important;
   color:#222!important;
 }
+
+.btn[disabled]:hover {
+  background-color: #ffcb6e;
+}

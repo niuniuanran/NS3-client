@@ -1,6 +1,7 @@
 import { Storage } from "aws-amplify";
 
 export async function s3Upload(file) {
+    if (file===null) return null;
     const filename = `${Date.now()}-${file.name}`;
 
     // Storage.vault.put is the shortcut for a Storage instance with private level set
