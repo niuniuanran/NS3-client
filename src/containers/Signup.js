@@ -117,6 +117,15 @@ export default function Signup() {
                         value={fields.password}
                         onChange={handleFieldChange}
                     />
+                    <div className="password-requirements">
+                        Password Requirements:
+                        <ul>
+                            <li>At least 6 characters</li>
+                            <li>Must include Uppercase character</li>
+                            <li>Must include numeric characters</li>
+                            <li>Must include symbol characters</li>
+                        </ul>
+                    </div>
                 </FormGroup>
                 <FormGroup controlId="confirmPassword" bsSize="large">
                     <ControlLabel>Confirm Password</ControlLabel>
