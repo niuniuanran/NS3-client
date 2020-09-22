@@ -120,10 +120,10 @@ export default function Signup() {
                     <div className="password-requirements">
                         Password Requirements:
                         <ul>
-                            <li>At least 6 characters</li>
-                            <li>Must include Uppercase character</li>
-                            <li>Must include numeric characters</li>
-                            <li>Must include symbol characters</li>
+                            <li>At least 8 characters</li>
+                            <li>Include Uppercase and lowercase character</li>
+                            <li>Include numeric characters</li>
+                            <li>Include symbol characters</li>
                         </ul>
                     </div>
                 </FormGroup>
