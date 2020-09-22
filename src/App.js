@@ -43,7 +43,7 @@ function App() {
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">
-                            <div className={"logo-container"}><img src={"./logo-transparent.png"} alt={""} className={"logo"} title={"NS3"}/>
+                            <div className={"logo-container"}><img src={"/logo-transparent.png"} alt={""} className={"logo"} title={"NS3"}/>
                             </div>
                         </Link>
                     </Navbar.Brand>

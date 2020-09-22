@@ -1,8 +1,26 @@
+.Notes {
+    position: relative;
+    top: 2rem;
+}
+
 .Notes form {
     padding-bottom: 15px;
 }
 
 .Notes form textarea {
-    height: 300px;
+    height: 25rem;
     font-size: 24px;
+    background-color: #fff4d9;
+}
+
+.form-control-static a{
+    color: orange;
+}
+
+.btn-primary {
+    background-color: #ffa500;
+}
+
+.btn-primary:hover {
+    background-color: #ff9900;
 }

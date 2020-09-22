@@ -29,3 +29,11 @@
     color: orange!important;
     font-weight: bold;
 }
+
+.list-group-item{
+    background-color: #fff4d9!important;
+}
+
+.page-header{
+    color: #fff4d9;
+}
