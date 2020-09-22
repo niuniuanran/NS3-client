@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Auth } from "aws-amplify";
-import { useHistory } from "react-router-dom";
 import {useFormFields} from "../libs/hooksLib";
 import { useAppContext } from "../libs/contextLib";
 import "./Login.css";
@@ -9,7 +8,6 @@ import LoaderButton from "../components/LoadButton";
 import { onError } from "../libs/errorLib";
 
 export default function Login() {
-    const history = useHistory();
     const { userHasAuthenticated } = useAppContext();
     const [isLoading, setIsLoading] = useState(false);
     const [fields, handleFieldChange] = useFormFields({email: "", password: ""});
